@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeCoast S01 — Ride the Tide of Innovation</title>
+  <meta name="description" content="CodeCoast Season 1 — a 36-hour coastal hackathon where code, art and innovation collide." />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ================= REFERRAL POPUP ================= -->
+<div class="popup" id="popup" aria-hidden="true">
+  <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+  <span class="chip chip-lime">Earn 100+ points</span>
+  <h3>Catch the <em>Tide</em></h3>
+  <p>Refer friends to CodeCoast (₹1.5L+ Prize Pool) and win <b>Swag &amp; Gift Vouchers</b> for yourself!</p>
+  <div class="popup-art">
+    <svg viewBox="0 0 200 90" aria-hidden="true">
+      <rect x="62" y="10" width="76" height="72" rx="10" fill="#fff" stroke="#e3e3e3"/>
+      <path d="M62 24 L44 34 L52 50 L62 44Z M138 24 L156 34 L148 50 L138 44Z" fill="#fff" stroke="#e3e3e3"/>
+      <rect x="86" y="30" width="28" height="10" rx="2" fill="#1C46F5"/>
+      <rect x="150" y="52" width="40" height="26" rx="13" fill="#D2FF52"/>
+      <rect x="10" y="50" width="38" height="28" rx="6" fill="#131313"/>
+    </svg>
+  </div>
+  <div class="popup-actions">
+    <a href="#prizes" class="btn btn-dark btn-sm">Win Prizes <span class="btn-dot">★</span></a>
+    <a href="#contact" class="btn btn-blue btn-sm">Shop Swag <span class="btn-dot btn-dot-light">↗</span></a>
+  </div>
+  <label class="popup-check"><input type="checkbox" id="popupNever" /> Don't show this again</label>
+</div>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero-wrap">
+  <div class="hero" id="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a href="#top" class="logo" aria-label="CodeCoast home">
+        <img src="assets/logo.svg" alt="" width="40" height="40" />
+        <span class="logo-word">CODE<br/>COAST</span>
+      </a>
+      <nav class="nav-pill">
+        <a href="#about">About</a>
+        <a href="#tracks">Tracks</a>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#location">Venue</a>
+        <a href="#contact">Contact</a>
+        <a href="#prizes" class="nav-apply">Apply</a>
+      </nav>
+      <div class="nav-right">
+        <button class="icon-btn" aria-label="Badge"><span class="pix-icon"></span></button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span></button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a><a href="#tracks">Tracks</a><a href="#sponsors">Sponsors</a>
+      <a href="#gallery">Gallery</a><a href="#location">Venue</a><a href="#contact">Contact</a>
+    </div>
+
+    <div class="hero-content">
+      <div class="date-pill reveal-up">MARCH 13 - MARCH 15 • 2027</div>
+      <h1 class="hero-title">
+        <span class="hero-line hero-line-1 pixel" data-scramble="CODE COAST">CODE COAST</span>
+        <span class="hero-line hero-line-2 pixel" data-scramble="SEASON 1">SEASON 1</span>
+        <span class="hero-bubble" aria-hidden="true"></span>
+      </h1>
+      <p class="hero-sub reveal-up">
+        A flagship experience with a <span class="hl-pill">₹2 LAKH+ PRIZE POOL</span> that sets the<br class="br-md"/>
+        benchmark for design-driven innovation and code
+      </p>
+      <a href="#prizes" class="btn btn-dark btn-lg reveal-up magnetic">Start Hacking <span class="btn-dot">↗</span></a>
+    </div>
+
+    <div class="spin-badge" aria-hidden="true">
+      <svg viewBox="0 0 120 120" class="spin-text">
+        <defs><path id="circlePath" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+        <text><textPath href="#circlePath">CODE • COAST • SEASON • 01 • CODE • COAST • </textPath></text>
+      </svg>
+      <span class="spin-core">S01</span>
+    </div>
+
+    <div class="hero-marquee">
+      <div class="marquee-track" data-speed="40">
+        <span>CODE COAST SEASON 1</span><i>★</i><span>MAR 13 - MAR 15</span><i>★</i><span>GOA</span><i>★</i>
+        <span>CODE COAST SEASON 1</span><i>★</i><span>MAR 13 - MAR 15</span><i>★</i><span>GOA</span><i>★</i>
+        <span>CODE COAST SEASON 1</span><i>★</i><span>MAR 13 - MAR 15</span><i>★</i><span>GOA</span><i>★</i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-head">
+      <h2 class="mega reveal-up">MORE THAN <em class="serif">code</em></h2>
+      <span class="label-mini">#01</span>
+    </div>
+    <div class="rule"></div>
+    <span class="eyebrow"><i class="dot dot-blue"></i>THE VISION</span>
+
+    <p class="vision" id="vision">
+      CodeCoast is a <b>creative uprising</b>. We are building a
+      <span class="img-pill" style="--img:url('https://picsum.photos/seed/cc-sand/200/80')"></span>
+      haven where the walls between <b>code</b>, <em class="serif blue">art</em>, and <b>innovation</b> melt away.
+      For 36 hours, we call on the <b>builders</b> and the
+      <span class="img-pill" style="--img:url('https://picsum.photos/seed/cc-neon/200/80')"></span>
+      rule-breakers to enter a space where every commit <span class="hl-box serif">shapes tomorrow</span>.
+      Here your terminal turns into a sketchbook, and the screen into your stage.
+    </p>
+
+    <div class="about-split">
+      <div class="about-left">
+        <h3 class="about-h">The Coast's <em class="serif blue">First &amp; Finest</em> Seaside Hackathon.</h3>
+        <div class="rule"></div>
+        <p class="muted">CodeCoast is a hackathon built by a community of makers, designers and engineers who believe the best ideas show up when you change the scenery. Every season gathers curious minds to ship technology with purpose and impact.</p>
+        <div class="stat-row">
+          <div><span class="stat-num lime-num" data-count="5" data-suffix="+">0</span><span class="stat-label">YEARS OF COMMUNITY</span></div>
+          <div><span class="stat-num blue-num" data-count="8" data-suffix="k+">0</span><span class="stat-label">REGISTRATIONS</span></div>
+        </div>
+      </div>
+      <div class="about-right">
+        <article class="track-card track-blue stack-card">
+          <span class="chip chip-dark">MAIN TRACK</span>
+          <h4>CodeCoast Open</h4>
+          <p>The open stage for every idea. FinTech, HealthTech, EdTech, or beautiful nonsense — if you can imagine it, you can build it here.</p>
+          <div class="chip-row"><span class="chip chip-white">₹1,00,000 Prize Pool</span><span class="chip chip-white">Internship Opportunities</span></div>
+          <div class="pix-deco"></div>
+        </article>
+        <article class="track-card track-black stack-card">
+          <span class="chip chip-lime">EXCLUSIVE TRACK</span>
+          <h4>Build For Good</h4>
+          <p>Reserved for first-time hackers. Build technology that lifts up communities and serves something bigger than yourself.</p>
+          <div class="chip-row"><span class="chip chip-white">₹50,000 Prize Pool</span><span class="chip chip-white">Dedicated Mentorship</span></div>
+          <div class="pix-deco pix-deco-lime"></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="scroll-cue" id="prize-trigger">
+      <span>SCROLL FOR REWARDS</span>
+      <i class="cue-line"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO WE ARE ================= -->
+<section class="who">
+  <div class="container who-grid">
+    <div>
+      <h2 class="pixel who-title">WHO<br/>WE ARE?</h2>
+      <p class="muted">CodeCoast isn't just an event; it's a movement. For 5 seasons of meetups and jams we've been reimagining what a hackathon can feel like — mixing code, culture and creativity right by the sea.</p>
+    </div>
+    <div class="who-stats">
+      <div><span class="pixel big-stat" data-count="5" data-suffix="+">0</span><span class="stat-label">SEASONS</span></div>
+      <div><span class="pixel big-stat" data-count="400" data-suffix="+">0</span><span class="stat-label">HACKERS</span></div>
+      <div><span class="pixel big-stat" data-count="36">0</span><span class="stat-label">HOURS</span></div>
+      <div><span class="pixel big-stat" data-count="500" data-suffix="k+">0</span><span class="stat-label">PRIZE POOL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RIBBONS ================= -->
+<section class="ribbons" aria-hidden="true">
+  <div class="ribbon ribbon-lime"><div class="marquee-track" data-speed="35"><span>BUILD THE FUTURE 🔥</span><span>BUILD THE FUTURE 🔥</span><span>BUILD THE FUTURE 🔥</span><span>BUILD THE FUTURE 🔥</span><span>BUILD THE FUTURE 🔥</span><span>BUILD THE FUTURE 🔥</span></div></div>
+  <div class="ribbon ribbon-blue"><div class="marquee-track reverse" data-speed="30"><span>₹200,000+ PRIZE POOL 🐷</span><span>₹200,000+ PRIZE POOL 🐷</span><span>₹200,000+ PRIZE POOL 🐷</span><span>₹200,000+ PRIZE POOL 🐷</span><span>₹200,000+ PRIZE POOL 🐷</span><span>₹200,000+ PRIZE POOL 🐷</span></div></div>
+  <div class="ribbon ribbon-black"><div class="marquee-track" data-speed="45"><span>CODECOAST SEASON 1 ≋</span><span>CODECOAST SEASON 1 ≋</span><span>CODECOAST SEASON 1 ≋</span><span>CODECOAST SEASON 1 ≋</span><span>CODECOAST SEASON 1 ≋</span><span>CODECOAST SEASON 1 ≋</span><span>CODECOAST SEASON 1 ≋</span></div></div>
+</section>
+
+<!-- ================= PRIZES ================= -->
+<section id="prizes" class="prizes">
+  <div class="container">
+    <div class="sec-head">
+      <h2 class="sec-title reveal-up">THE<em class="serif blue">rewards</em></h2>
+      <span class="eyebrow"><i class="dot dot-lime"></i>PRIZE POOL ₹2 LAKH+</span>
+    </div>
+
+    <div class="bento-prizes">
+      <article class="p-card p-lime bento-a reveal-card">
+        <div class="p-top"><span class="chip chip-dark">MAIN TRACK</span><span class="pix-grid-icon"></span></div>
+        <div class="p-amount">₹1 Lakh</div>
+        <p class="serif p-sub">Main Track Pool</p>
+        <div class="p-split">
+          <div><b>50k</b><span>CHAMPION</span></div>
+          <div><b>30k</b><span>RUNNER UP</span></div>
+          <div><b>20k</b><span>2ND RUNNER</span></div>
+        </div>
+      </article>
+
+      <a href="#contact" class="p-card p-white bento-b reveal-card register-card">
+        <svg viewBox="0 0 120 120" class="spin-text spin-dark">
+          <defs><path id="circlePath2" d="M60,60 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
+          <text><textPath href="#circlePath2">REGISTER • NOW • APPLY • NOW • REGISTER • </textPath></text>
+        </svg>
+        <span class="reg-arrow">↗</span>
+      </a>
+
+      <article class="p-card p-white bento-c reveal-card mascot-card">
+        <svg viewBox="0 0 16 16" class="mascot" shape-rendering="crispEdges" aria-hidden="true">
+          <g fill="#1C46F5">
+            <rect x="5" y="2" width="6" height="1"/><rect x="4" y="3" width="8" height="1"/><rect x="3" y="4" width="10" height="4"/>
+            <rect x="3" y="8" width="2" height="3"/><rect x="6" y="8" width="1" height="4"/><rect x="9" y="8" width="1" height="4"/><rect x="11" y="8" width="2" height="3"/>
+            <rect x="2" y="11" width="2" height="1"/><rect x="12" y="11" width="2" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/>
+          </g>
+          <rect x="5" y="5" width="2" height="2" fill="#fff"/><rect x="9" y="5" width="2" height="2" fill="#fff"/>
+          <rect x="6" y="6" width="1" height="1" fill="#131313"/><rect x="10" y="6" width="1" height="1" fill="#131313"/>
+        </svg>
+        <span class="star-corner">☆</span>
+      </article>
+
+      <article class="p-card p-blue bento-d reveal-card">
+        <span class="chip chip-glass">#BUILDFORGOOD TRACK</span>
+        <div class="p-amount p-amount-sm">50K</div>
+        <p class="serif p-sub">Total BFG Pool</p>
+        <ul class="p-table">
+          <li><span>Winner</span><b>25,000</b></li>
+          <li><span>1st Runner</span><b>15,000</b></li>
+          <li><span>2nd Runner</span><b>10,000</b></li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="awards">
+      <article class="award reveal-card">
+        <div class="award-text">
+          <span class="award-brand">◆ Presented by Partner</span>
+          <h4>BEST PITCH<br/>AWARD</h4>
+          <p class="award-win">Win a Gaming Console</p>
+          <p>Given to the team member with the most compelling project pitch.</p>
+        </div>
+        <svg class="award-img" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="42" y="10" width="36" height="100" rx="14" fill="#fff"/>
+          <rect x="54" y="10" width="12" height="100" fill="#141414"/>
+          <rect x="30" y="104" width="60" height="8" rx="4" fill="#2a2a2a"/>
+        </svg>
+      </article>
+      <article class="award reveal-card">
+        <div class="award-text">
+          <span class="award-brand">◆ Presented by Partner</span>
+          <h4>CREATOR<br/>SPOTLIGHT AWARD</h4>
+          <p class="award-win">Win Wireless Headphones</p>
+          <p>Post with #codecoast01 on Instagram, X, or YouTube.</p>
+        </div>
+        <svg class="award-img" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M22 70 A38 38 0 0 1 98 70" fill="none" stroke="#eee" stroke-width="10" stroke-linecap="round"/>
+          <rect x="12" y="62" width="24" height="40" rx="12" fill="#fafafa"/>
+          <rect x="84" y="62" width="24" height="40" rx="12" fill="#fafafa"/>
+        </svg>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRACKS (pinned horizontal) ================= -->
+<section id="tracks" class="tracks">
+  <div class="container">
+    <div class="sec-head">
+      <h2 class="sec-title">HACK<em class="serif blue">tracks</em></h2>
+      <span class="eyebrow"><i class="dot dot-lime"></i>PROJECT FOLDERS</span>
+    </div>
+    <div class="rule"></div>
+  </div>
+  <div class="tracks-viewport">
+    <div class="tracks-row" id="tracksRow"></div>
+  </div>
+</section>
+
+<div class="modal" id="trackModal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="popup-close" id="modalClose" aria-label="Close">&times;</button>
+    <span class="chip chip-lime" id="modalNum"></span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalBody"></p>
+  </div>
+</div>
+
+<!-- ================= TIMELINE ================= -->
+<section id="timeline" class="timeline">
+  <div class="container">
+    <div class="sec-head">
+      <h2 class="sec-title reveal-up">THE<em class="serif blue">schedule</em></h2>
+      <span class="eyebrow"><i class="dot dot-lime"></i>TIMELINE</span>
+    </div>
+    <div class="cal reveal-card">
+      <div class="cal-head">
+        <div class="cal-month">
+          <span id="calMonth">FEBRUARY</span>
+          <button class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
+          <button class="cal-nav" id="calNext" aria-label="Next month">›</button>
+        </div>
+        <span class="pixel cal-brand">CODE COAST 01</span>
+      </div>
+      <div class="cal-dow"><span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span></div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="countdown">
+  <div class="container cd-inner">
+    <span class="eyebrow eyebrow-lime"><i class="dot dot-lime"></i>GET READY TO CATCH THE TIDE...</span>
+    <div class="cd-nums">
+      <div><b id="cdM">00</b><span>MONTHS</span></div><i>:</i>
+      <div><b id="cdD">00</b><span>DAYS</span></div><i>:</i>
+      <div><b id="cdH">00</b><span>HOURS</span></div><i>:</i>
+      <div><b id="cdMin">00</b><span>MINUTES</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPONSORS ================= -->
+<section id="sponsors" class="sponsors">
+  <div class="container">
+    <div class="sec-head">
+      <h2 class="sec-title reveal-up">OUR<em class="serif blue">sponsors</em></h2>
+      <span class="eyebrow"><i class="dot dot-lime"></i>BACKING THE FUTURE</span>
+    </div>
+    <h5 class="sp-label">PLATINUM SPONSOR</h5>
+    <div class="sp-platinum reveal-up">
+      <div class="sp-logo sp-logo-xl"><span class="sp-mark">◣◥</span> Northwind<br/><small>Labs</small></div>
+    </div>
+    <h5 class="sp-label sp-label-light">PLATFORM PARTNERS</h5>
+    <div class="sp-row reveal-up">
+      <div class="sp-logo">⬢ Hexaboard</div>
+      <div class="sp-logo">◎ Orbitly</div>
+      <div class="sp-logo">▲ Peakstack</div>
+    </div>
+    <div class="center"><a href="#contact" class="btn btn-dark magnetic">Become a Sponsor <span class="btn-dot">↗</span></a></div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="gallery">
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="liquid">
+      <feTurbulence id="liquid-turbulence" type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" id="liquid-disp" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+  <div class="container gal-head">
+    <h2 class="sec-title">PAST<em class="serif blue">editions</em></h2>
+    <span class="eyebrow"><i class="dot dot-lime"></i>GALLERY</span>
+  </div>
+  <div class="gal-track" id="galTrack"></div>
+</section>
+
+<!-- ================= LOCATION ================= -->
+<section id="location" class="location">
+  <div class="container">
+    <div class="sec-head">
+      <h2 class="sec-title reveal-up">WHERE<em class="serif blue">to be</em></h2>
+      <span class="eyebrow"><i class="dot dot-lime"></i>LOCATION</span>
+    </div>
+    <div class="loc-sub">
+      <p class="muted">Palm Grove Beach Camp, Goa. Where innovation meets the coast.</p>
+      <a href="#" class="btn btn-white btn-sm magnetic">TRAVEL<br/>GUIDE <span class="btn-dot">↗</span></a>
+    </div>
+
+    <div class="loc-bento">
+      <div class="loc-card loc-map reveal-card">
+        <iframe title="Venue map" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=73.73%2C15.48%2C73.83%2C15.56&amp;layer=mapnik&amp;marker=15.52%2C73.77"></iframe>
+        <div class="map-tag"><span class="map-pin">●</span><div><b>Palm Grove Beach Camp</b><small>Goa, India</small></div></div>
+      </div>
+      <div class="loc-card loc-refer p-lime reveal-card">
+        <span class="eyebrow">REFER &amp; WIN</span>
+        <h4>Share the hack!</h4>
+        <a href="#" class="btn btn-dark btn-sm" id="getCode">GET CODE</a>
+      </div>
+      <div class="loc-card loc-clock reveal-card">
+        <svg viewBox="0 0 100 100" class="clock">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#333" stroke-width="1"/>
+          <g id="ticks"></g>
+          <line id="hHand" x1="50" y1="50" x2="50" y2="28" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          <line id="mHand" x1="50" y1="50" x2="50" y2="16" stroke="#D2FF52" stroke-width="2" stroke-linecap="round"/>
+          <line id="sHand" x1="50" y1="56" x2="50" y2="12" stroke="#1C46F5" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="2.5" fill="#fff"/>
+        </svg>
+        <b id="clockTxt" class="clock-txt">--:--</b>
+        <small>IST (UTC+05:30)</small>
+      </div>
+      <div class="loc-card loc-weather p-lime reveal-card">
+        <div class="lw-top"><span class="eyebrow">WEATHER</span><span class="sun">☀</span></div>
+        <b class="w-temp">29°</b><small>Sunny &amp; Breezy</small>
+      </div>
+      <div class="loc-card loc-cal reveal-card">
+        <div class="mini-head"><b>MARCH</b><span>2027</span></div>
+        <div class="mini-grid" id="miniCal"></div>
+      </div>
+      <a class="loc-card loc-nav p-blue reveal-card" href="https://www.openstreetmap.org/?mlat=15.52&amp;mlon=73.77" target="_blank" rel="noopener">
+        <div class="lw-top"><span class="eyebrow eyebrow-light">NAVIGATE</span><span>➤</span></div>
+        <svg viewBox="0 0 200 80" class="nav-curve"><path d="M10 70 C 60 -10, 140 -10, 190 60" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="5 6"/></svg>
+        <b class="nav-txt">Get<br/>Directions</b>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <span class="pix-corner pix-tl" aria-hidden="true"></span>
+  <span class="pix-corner pix-br" aria-hidden="true"></span>
+  <div class="faq-inner">
+    <h2 class="faq-title">FAQ<em class="serif lime">s</em></h2>
+    <p class="eyebrow eyebrow-light">EVERYTHING YOU NEED TO <em class="serif">know</em></p>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+  <div class="contact-card">
+    <span class="chip chip-glass"><i class="dot dot-lime"></i>HELP &amp; SUPPORT</span>
+    <h2>Got Questions?<br/>We're Here.</h2>
+    <p>Registration, partnerships, or just want to say hi — our crew is ready to help you out.</p>
+    <div class="contact-btns">
+      <a href="mailto:hello@codecoast.dev" class="btn btn-lime btn-sm">GENERAL ENQUIRIES →</a>
+      <a href="#" class="btn btn-ghost btn-sm">CODE OF CONDUCT ↗</a>
+    </div>
+    <svg class="curve-marquee" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+      <path id="curve1" d="M -100 60 Q 300 150 600 90 T 1300 70" fill="none" stroke="#fff" stroke-width="44"/>
+      <text dy="7"><textPath id="curveText" href="#curve1" startOffset="0">CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦ CODECOAST 01 ✦ INNOVATION ✦</textPath></text>
+    </svg>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer" class="footer">
+  <div class="footer-card">
+    <span class="eyebrow">CONTACTS</span>
+    <a href="mailto:hello@codecoast.dev" class="pixel foot-mail">HELLO@CODECOAST.DEV</a>
+    <div class="foot-grid">
+      <div>
+        <span class="eyebrow">ORGANIZED BY</span>
+        <b class="foot-org">CoastDev Collective</b>
+        <p class="muted small">Community of Builders &amp; Designers<br/>Panaji, Goa</p>
+        <div class="foot-logos"><img src="assets/logo.svg" alt="" width="32" height="32"/></div>
+      </div>
+      <div>
+        <span class="eyebrow">QUICK LINKS</span>
+        <div class="foot-links">
+          <div><a href="#top">Home</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#location">Venue</a><a href="#contact">Contact</a></div>
+          <div class="muted"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Code of Conduct</a></div>
+        </div>
+        <div class="foot-people">
+          <div><span class="eyebrow">LEAD ORGANIZER</span><b>Your Name</b><small>+91 00000 00000</small></div>
+          <div><span class="eyebrow">CO-ORGANIZERS</span><b>Teammate One</b><small>+91 00000 00000</small><b>Teammate Two</b><small>+91 00000 00000</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <small>© 2027 CODECOAST. ALL RIGHTS RESERVED.</small>
+    <small>DESIGNED &amp; DEVELOPED BY <u>YOU</u></small>
+    <div class="socials"><span>SOCIAL MEDIA:</span><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="YouTube">▶</a></div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

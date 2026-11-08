@@ -1,0 +1,44 @@
+<section class="container checkout">
+  <h1 class="page-title small-title">Your <em class="serif blue">cart</em></h1>
+  <div class="checkout-layout">
+    <div>
+      <div id="cartList" class="cart-list"></div>
+      <div class="cart-actions" id="cartActions">
+        <a href="/merch" class="back-link">← Continue Shopping</a>
+        <button class="link-btn danger" id="clearCart">Clear Cart</button>
+      </div>
+
+      <form class="card-form" id="orderForm" novalidate hidden>
+        <h3>Pickup details</h3>
+        <p class="muted small">We'll email your order reference. Pay via UPI/cash and collect your merch at the venue registration desk.</p>
+        <div class="form-grid">
+          <label class="field"><span>FULL NAME</span><input name="name" required maxlength="80" placeholder="Jane Doe" autocomplete="name"/></label>
+          <label class="field"><span>PHONE</span><input name="phone" required maxlength="20" placeholder="+91 98765 43210" autocomplete="tel"/></label>
+          <label class="field"><span>EMAIL</span><input name="email" type="email" required maxlength="120" placeholder="you@example.com" autocomplete="email"/></label>
+          <label class="field"><span>COLLEGE / COMPANY</span><input name="college" maxlength="120" placeholder="Optional"/></label>
+        </div>
+      </form>
+    </div>
+
+    <aside class="summary" id="summary">
+      <h3>Order Summary</h3>
+      <div class="sum-row"><span>Subtotal</span><b id="sSub">₹0</b></div>
+      <div class="sum-row" id="sDiscRow" hidden><span>Combo discount (2+ tees)</span><b class="good" id="sDisc">−₹50</b></div>
+      <div class="sum-row"><span>Platform Fee</span><b class="good">FREE</b></div>
+      <div class="sum-row total"><span>Total</span><b id="sTotal">₹0</b></div>
+      <p class="hint" id="comboHint"></p>
+      <button class="btn btn-dark btn-wide" id="checkoutBtn">CHECKOUT NOW <span class="btn-dot">→</span></button>
+    </aside>
+  </div>
+</section>
+
+<div class="modal" id="orderDone" aria-hidden="true">
+  <div class="modal-card modal-white center-text">
+    <div class="done-tick">✓</div>
+    <h3>Order placed!</h3>
+    <p>Your order reference is</p>
+    <p class="pixel order-ref" id="orderRef"></p>
+    <p class="muted small" id="orderMsg"></p>
+    <a href="/merch" class="btn btn-dark btn-sm">Back to store <span class="btn-dot">↗</span></a>
+  </div>
+</div>

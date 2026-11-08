@@ -1,28 +1,4 @@
-/* CodeCoast — interactions & animations */
-gsap.registerPlugin(ScrollTrigger);
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------- smooth scroll (Lenis) ---------- */
-let lenis = null;
-if (window.Lenis && !reduce) {
-  lenis = new Lenis({ duration: 1.15, smoothWheel: true });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-}
-const scrollToTarget = (target) => (lenis ? lenis.scrollTo(target, { offset: 0 }) : (typeof target === 'number' ? scrollTo({ top: target, behavior: 'smooth' }) : target.scrollIntoView({ behavior: 'smooth' })));
-$$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
-  const id = a.getAttribute('href');
-  if (id.length < 2) return;
-  const el = $(id);
-  if (!el) return;
-  e.preventDefault();
-  $('#mobileMenu').classList.remove('open');
-  $('#menuBtn').classList.remove('open');
-  scrollToTarget(el);
-}));
+/* CodeCoast — home page */
 
 /* ---------- hero: pixel text scramble ---------- */
 const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&*<>/';
@@ -30,60 +6,55 @@ function scramble(el, delay = 0) {
   const final = el.dataset.scramble;
   let frame = 0;
   const total = 38;
-  el.style.opacity = 1;
   setTimeout(function tick() {
+    el.style.opacity = 1;
     const p = frame / total;
-    el.textContent = final.split('').map((ch, i) => {
-      if (ch === ' ') return ' ';
-      return i / final.length < p ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0];
-    }).join('');
+    el.textContent = final.split('').map((ch, i) => (ch === ' ' ? ' ' : i / final.length < p ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0])).join('');
     if (frame++ < total) requestAnimationFrame(tick); else el.textContent = final;
   }, delay);
 }
-$$('[data-scramble]').forEach((el, i) => { el.style.opacity = 0; scramble(el, 350 + i * 260); });
+$$('[data-scramble]').forEach((el, i) => { el.style.opacity = 0; scramble(el, 700 + i * 260); });
+// re-scramble on hover
+$$('[data-scramble]').forEach((el) => el.addEventListener('mouseenter', () => { if (el.textContent === el.dataset.scramble) scramble(el, 0); }));
 
-gsap.from('.nav > *', { y: -30, opacity: 0, duration: .9, stagger: .1, ease: 'power3.out' });
-gsap.from('.hero .reveal-up', { y: 40, opacity: 0, duration: 1, stagger: .15, delay: .5, ease: 'power3.out' });
-gsap.from('.spin-badge', { scale: 0, rotate: -180, duration: 1.2, delay: 1, ease: 'back.out(1.6)' });
-gsap.from('.hero-bubble', { scale: 0, duration: .6, delay: 1.3, ease: 'back.out(3)' });
+gsap.from('.site-nav > *', { y: -30, opacity: 0, duration: .9, stagger: .1, delay: .5, ease: 'power3.out' });
+gsap.from('.hero .reveal-up', { y: 40, opacity: 0, duration: 1, stagger: .15, delay: .8, ease: 'power3.out' });
+gsap.from('.spin-badge', { scale: 0, rotate: -180, duration: 1.2, delay: 1.2, ease: 'back.out(1.6)' });
+gsap.from('.hero-bubble', { scale: 0, duration: .6, delay: 1.5, ease: 'back.out(3)' });
 
-/* glow follows cursor in hero */
+/* glow follows cursor */
 const hero = $('#hero'), glow = $('.hero-glow');
 hero.addEventListener('mousemove', (e) => {
   const r = hero.getBoundingClientRect();
   gsap.to(glow, { left: e.clientX - r.left, top: e.clientY - r.top, duration: .8, ease: 'power3.out' });
 });
-/* hero title parallax out */
 gsap.to('.hero-title', { yPercent: -25, opacity: .3, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
 
-/* ---------- marquees (scroll-velocity aware) ---------- */
-$$('.marquee-track').forEach((track) => {
-  track.innerHTML += track.innerHTML; // duplicate for seamless loop
-  const dir = track.classList.contains('reverse') ? 1 : -1;
-  const speed = +track.dataset.speed || 40;
-  const tween = gsap.fromTo(track, { xPercent: dir < 0 ? 0 : -50 }, { xPercent: dir < 0 ? -50 : 0, duration: speed, ease: 'none', repeat: -1 });
-  ScrollTrigger.create({
-    trigger: track, start: 'top bottom', end: 'bottom top',
-    onUpdate: (self) => {
-      const v = Math.min(Math.abs(self.getVelocity()) / 300, 6);
-      gsap.to(tween, { timeScale: 1 + v, duration: .2, overwrite: true });
-      gsap.to(tween, { timeScale: 1, duration: 1.2, delay: .2 });
-    },
+/* ---------- hero: pixel trail on the grid (new) ---------- */
+(function pixelTrail() {
+  const cv = $('#heroPixels');
+  if (!cv || REDUCE) return;
+  const ctx = cv.getContext('2d');
+  const CELL = 54;
+  let cells = new Map(), w, h, dpr;
+  const size = () => { dpr = Math.min(devicePixelRatio, 2); w = cv.width = hero.clientWidth * dpr; h = cv.height = hero.clientHeight * dpr; };
+  size(); addEventListener('resize', size);
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    const cx = Math.floor((e.clientX - r.left) / CELL), cy = Math.floor((e.clientY - r.top) / CELL);
+    cells.set(cx + ',' + cy, { x: cx, y: cy, life: 1, c: Math.random() < .5 ? '28,70,245' : '210,255,82' });
   });
-});
-
-/* ---------- generic reveals ---------- */
-$$('.reveal-up').forEach((el) => {
-  if (el.closest('.hero')) return;
-  gsap.from(el, { y: 60, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
-});
-$$('.reveal-card').forEach((el, i) => {
-  gsap.from(el, { y: 80, scale: .94, opacity: 0, duration: 1.1, ease: 'expo.out', delay: (i % 4) * .08, scrollTrigger: { trigger: el, start: 'top 90%' } });
-});
-$$('.sec-title').forEach((el) => {
-  const em = el.querySelector('em');
-  if (em) gsap.from(em, { x: 60, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
-});
+  (function loop() {
+    ctx.clearRect(0, 0, w, h);
+    cells.forEach((c, k) => {
+      c.life -= .02;
+      if (c.life <= 0) return cells.delete(k);
+      ctx.fillStyle = `rgba(${c.c},${c.life * .35})`;
+      ctx.fillRect(c.x * CELL * dpr + dpr, c.y * CELL * dpr + dpr, (CELL - 1) * dpr, (CELL - 1) * dpr);
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
 
 /* ---------- vision paragraph word-by-word reveal ---------- */
 (function vision() {
@@ -109,51 +80,52 @@ $$('.sec-title').forEach((el) => {
   const items = $$('.w, .img-pill', p);
   ScrollTrigger.create({
     trigger: p, start: 'top 80%', end: 'bottom 45%', scrub: true,
-    onUpdate: (self) => {
-      const n = Math.round(self.progress * items.length);
-      items.forEach((w, i) => w.classList.toggle('on', i < n));
-    },
+    onUpdate: (self) => { const n = Math.round(self.progress * items.length); items.forEach((w, i) => w.classList.toggle('on', i < n)); },
   });
 })();
-
-/* ---------- counters ---------- */
-$$('[data-count]').forEach((el) => {
-  const end = +el.dataset.count, suf = el.dataset.suffix || '';
-  const o = { v: 0 };
-  ScrollTrigger.create({
-    trigger: el, start: 'top 90%', once: true,
-    onEnter: () => gsap.to(o, { v: end, duration: 2, ease: 'power2.out', onUpdate: () => (el.textContent = Math.round(o.v) + suf) }),
-  });
-});
 
 /* ---------- stacked track cards ---------- */
 $$('.stack-card').forEach((card, i) => {
   gsap.fromTo(card, { rotate: i ? 4 : -4, y: 80 }, { rotate: 0, y: 0, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'top 40%', scrub: 1 } });
 });
 
-/* ---------- ribbons drift with scroll ---------- */
+/* ---------- ribbons drift ---------- */
 gsap.utils.toArray('.ribbon').forEach((r, i) => {
   gsap.fromTo(r, { x: i % 2 ? -80 : 80 }, { x: i % 2 ? 80 : -80, ease: 'none', scrollTrigger: { trigger: '.ribbons', start: 'top bottom', end: 'bottom top', scrub: true } });
 });
 
+/* ---------- mascot eyes follow cursor (new) ---------- */
+(function mascot() {
+  const card = $('#mascotCard'), eyes = $('.mascot-eyes');
+  if (!card || !eyes) return;
+  addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const dx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / 300));
+    const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / 300));
+    gsap.to(eyes, { x: dx * .6, y: dy * .5, duration: .3 });
+  });
+  card.addEventListener('click', () => gsap.fromTo('.mascot', { y: 0 }, { y: -30, duration: .25, yoyo: true, repeat: 1, ease: 'power2.out' }));
+})();
+
 /* ---------- tracks: pinned horizontal folders ---------- */
 const TRACKS = [
-  ['AI Agents & LLM Tooling', 'Ship autonomous agents, retrieval pipelines and developer tools that make large models genuinely useful.'],
-  ['Decentralised Apps & Digital Identity', 'Build trustworthy on-chain apps, wallets and identity systems people can actually use.'],
-  ['Cloud, DevOps & Platform Engineering', 'Automate, observe and scale — tooling that makes deployments boring in the best way.'],
-  ['Cybersecurity & Privacy Engineering', 'Detect threats, harden systems and design privacy-first products.'],
-  ['FinTech & Financial Inclusion', 'Payments, lending and money tools for the next billion users.'],
-  ['Climate & Ocean Tech', 'Monitor coastlines, cut emissions and build tools for a healthier planet.'],
-  ['Smart Cities & IoT', 'Sensors, edge devices and data platforms for safer, smarter streets.'],
-  ['HealthTech & Accessibility', 'Care delivery, diagnostics and assistive tech that includes everyone.'],
+  ['AI Agents & LLM Tooling', 'Ship autonomous agents, retrieval pipelines and developer tools that make large models genuinely useful.', ['Multi-agent workflow builder', 'Local-first RAG for documents', 'LLM evaluation dashboard']],
+  ['Decentralised Apps & Digital Identity', 'Build trustworthy on-chain apps, wallets and identity systems people can actually use.', ['Verifiable student credentials', 'Gasless onboarding wallet', 'On-chain event ticketing']],
+  ['Cloud, DevOps & Platform Engineering', 'Automate, observe and scale — tooling that makes deployments boring in the best way.', ['Self-healing deploy pipeline', 'Cost anomaly detector', 'Internal developer portal']],
+  ['Cybersecurity & Privacy Engineering', 'Detect threats, harden systems and design privacy-first products.', ['Phishing detector for messaging apps', 'Secrets scanner for repos', 'Privacy-preserving analytics']],
+  ['FinTech & Financial Inclusion', 'Payments, lending and money tools for the next billion users.', ['UPI expense coach', 'Micro-savings for gig workers', 'Fraud-aware checkout']],
+  ['Climate & Ocean Tech', 'Monitor coastlines, cut emissions and build tools for a healthier planet.', ['Beach litter mapping with drones', 'Fishermen weather alerts', 'Carbon tracker for campuses']],
+  ['Smart Cities & IoT', 'Sensors, edge devices and data platforms for safer, smarter streets.', ['Smart parking finder', 'Flood early-warning mesh', 'Air quality street map']],
+  ['HealthTech & Accessibility', 'Care delivery, diagnostics and assistive tech that includes everyone.', ['Sign-language live captions', 'Rural tele-triage assistant', 'Medicine reminder for elders']],
 ];
 const ICONS = ['✦', '⬡', '☁', '⛨', '↗', '≋', '⌂', '♥'];
 const row = $('#tracksRow');
 TRACKS.forEach(([t], i) => {
   const n = String(i + 1).padStart(2, '0');
   row.insertAdjacentHTML('beforeend', `
-    <article class="folder" data-i="${i}">
+    <article class="folder" data-i="${i}" data-cursor="OPEN">
       <div class="folder-tab">${n} // TRACK</div>
+      <div class="folder-paper" aria-hidden="true"></div>
       <div class="folder-body">
         <span class="folder-icon">${ICONS[i]}</span>
         <h4>${t}</h4>
@@ -171,23 +143,20 @@ const setActive = () => {
 gsap.to(row, {
   x: () => -(row.scrollWidth - innerWidth),
   ease: 'none',
-  scrollTrigger: {
-    trigger: '#tracks', start: 'top top', end: () => '+=' + (row.scrollWidth - innerWidth), pin: true, scrub: 1, invalidateOnRefresh: true,
-    onUpdate: setActive,
-  },
+  scrollTrigger: { trigger: '#tracks', start: 'top top', end: () => '+=' + (row.scrollWidth - innerWidth), pin: true, scrub: 1, invalidateOnRefresh: true, onUpdate: setActive },
 });
 setActive();
-const modal = $('#trackModal');
+const trackModal = $('#trackModal');
 folders.forEach((f) => f.addEventListener('click', () => {
   const i = +f.dataset.i;
   $('#modalNum').textContent = String(i + 1).padStart(2, '0') + ' // TRACK';
   $('#modalTitle').textContent = TRACKS[i][0];
   $('#modalBody').textContent = TRACKS[i][1];
-  modal.classList.add('show');
+  $('#modalIdeas').innerHTML = TRACKS[i][2].map((x) => `<li>${escapeHTML(x)}</li>`).join('');
+  $('#modalApply').href = '/apply?domain=' + encodeURIComponent(TRACKS[i][0]);
+  openModal(trackModal);
 }));
-const closeModal = () => modal.classList.remove('show');
-$('#modalClose').addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+$('#modalClose').addEventListener('click', () => closeModal(trackModal));
 
 /* ---------- calendar ---------- */
 const EVENT_DATE = new Date('2027-03-13T09:00:00+05:30');
@@ -201,7 +170,7 @@ const EVENTS = {
 };
 const MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
 let calY = 2027, calM = 1;
-function renderCal() {
+function renderCal(dir = 0) {
   $('#calMonth').textContent = MONTHS[calM];
   const first = new Date(calY, calM, 1).getDay();
   const days = new Date(calY, calM + 1, 0).getDate();
@@ -213,13 +182,14 @@ function renderCal() {
   }
   const tail = (7 - ((first + days) % 7)) % 7;
   for (let i = 0; i < tail; i++) html += '<div class="cal-cell blank"></div>';
-  $('#calGrid').innerHTML = html;
+  const grid = $('#calGrid');
+  grid.innerHTML = html;
+  if (dir) gsap.from(grid.children, { opacity: 0, x: 30 * dir, duration: .4, stagger: .006, ease: 'power2.out' });
 }
-$('#calPrev').addEventListener('click', () => { calM = (calM + 11) % 12; if (calM === 11) calY--; renderCal(); });
-$('#calNext').addEventListener('click', () => { calM = (calM + 1) % 12; if (calM === 0) calY++; renderCal(); });
+$('#calPrev').addEventListener('click', () => { calM = (calM + 11) % 12; if (calM === 11) calY--; renderCal(-1); });
+$('#calNext').addEventListener('click', () => { calM = (calM + 1) % 12; if (calM === 0) calY++; renderCal(1); });
 renderCal();
 
-/* mini calendar in venue bento */
 (function miniCal() {
   const y = 2027, m = 2;
   let h = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d) => `<span class="dow">${d}</span>`).join('');
@@ -229,35 +199,34 @@ renderCal();
   $('#miniCal').innerHTML = h;
 })();
 
-/* ---------- countdown ---------- */
+/* ---------- countdown (digits flip when they change) ---------- */
 function tickCountdown() {
-  const now = new Date();
-  let diff = Math.max(0, EVENT_DATE - now);
+  let diff = Math.max(0, EVENT_DATE - new Date());
   const months = Math.floor(diff / (30.44 * 864e5)); diff -= months * 30.44 * 864e5;
   const days = Math.floor(diff / 864e5); diff -= days * 864e5;
   const hrs = Math.floor(diff / 36e5); diff -= hrs * 36e5;
   const mins = Math.floor(diff / 6e4);
   const pad = (n) => String(n).padStart(2, '0');
-  $('#cdM').textContent = pad(months); $('#cdD').textContent = pad(days);
-  $('#cdH').textContent = pad(hrs); $('#cdMin').textContent = pad(mins);
+  [['#cdM', months], ['#cdD', days], ['#cdH', hrs], ['#cdMin', mins]].forEach(([id, v]) => {
+    const el = $(id), txt = pad(v);
+    if (el.textContent !== txt) { el.textContent = txt; gsap.fromTo(el, { rotateX: -90, opacity: 0 }, { rotateX: 0, opacity: 1, duration: .6, ease: 'back.out(2)' }); }
+  });
 }
-tickCountdown(); setInterval(tickCountdown, 1000 * 30);
+tickCountdown(); setInterval(tickCountdown, 1000 * 15);
 
-/* ---------- gallery: pinned horizontal + liquid hover ---------- */
+/* ---------- gallery strip ---------- */
 const gal = $('#galTrack');
-const SEEDS = ['coast1', 'stage2', 'crowd3', 'laptop4', 'night5', 'team6', 'beach7'];
-SEEDS.forEach((s, i) => gal.insertAdjacentHTML('beforeend',
-  `<figure class="gal-item"><div class="ph" style="--img:url('https://picsum.photos/seed/${s}/600/750')"></div><figcaption class="gal-cap">PREVIOUS MEETUP<b>MOMENT ${i + 1}</b></figcaption></figure>`));
-gal.insertAdjacentHTML('beforeend', '<a href="#" class="gal-more">VIEW<br/>ALL<em class="serif">memories</em></a>');
+['coast1', 'stage2', 'crowd3', 'laptop4', 'night5', 'team6', 'beach7'].forEach((s, i) => gal.insertAdjacentHTML('beforeend',
+  `<figure class="gal-item" data-cursor="VIEW"><div class="ph" style="--img:url('https://picsum.photos/seed/${s}/600/750')"></div><figcaption class="gal-cap">PREVIOUS MEETUP<b>MOMENT ${i + 1}</b></figcaption></figure>`));
+gal.insertAdjacentHTML('beforeend', '<a href="/gallery" class="gal-more">VIEW<br/>ALL<em class="serif">memories</em></a>');
+$$('.gal-item', gal).forEach((g) => g.addEventListener('click', () => { location.href = '/gallery'; }));
 if (innerWidth > 640) {
   gsap.to(gal, {
     x: () => -(gal.scrollWidth - innerWidth + innerWidth * .04),
     ease: 'none',
     scrollTrigger: { trigger: '#gallery', start: 'top top', end: () => '+=' + gal.scrollWidth * .7, pin: true, scrub: 1, invalidateOnRefresh: true },
   });
-} else {
-  gal.parentElement.style.overflowX = 'auto';
-}
+} else gal.parentElement.style.overflowX = 'auto';
 const disp = $('#liquid-disp'), turb = $('#liquid-turbulence');
 $$('.gal-item').forEach((it) => {
   let raf, t = 0;
@@ -284,7 +253,23 @@ function tickClock() {
   $('#clockTxt').textContent = ist.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 }
 tickClock(); setInterval(tickClock, 1000);
-$('#getCode').addEventListener('click', (e) => { e.preventDefault(); e.currentTarget.textContent = 'COAST-' + Math.random().toString(36).slice(2, 7).toUpperCase(); });
+
+/* ---------- live weather for the venue (Open-Meteo, no API key) ---------- */
+(async function weather() {
+  try {
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=15.52&longitude=73.77&current=temperature_2m,weather_code,wind_speed_10m');
+    const j = await r.json();
+    const c = j.current;
+    const code = c.weather_code;
+    const [icon, desc] = code === 0 ? ['☀', 'Clear & Sunny'] : code <= 3 ? ['⛅', 'Partly Cloudy'] : code <= 48 ? ['🌫', 'Hazy'] : code <= 67 ? ['🌧', 'Rainy'] : code <= 82 ? ['🌦', 'Showers'] : ['⛈', 'Stormy'];
+    $('#wTemp').textContent = Math.round(c.temperature_2m) + '°';
+    $('#wIcon').textContent = icon;
+    $('#wDesc').textContent = `${desc} · ${Math.round(c.wind_speed_10m)} km/h wind`;
+  } catch (e) { /* keep the default */ }
+})();
+
+/* ---------- travel guide ---------- */
+$('#travelBtn').addEventListener('click', () => openModal($('#travelModal')));
 
 /* ---------- FAQ accordion ---------- */
 const FAQ = [
@@ -321,30 +306,3 @@ gsap.from('.faq-item', { y: 40, opacity: 0, stagger: .07, duration: .8, ease: 'p
 const curveText = $('#curveText');
 const curve = { o: 0 };
 gsap.to(curve, { o: -50, duration: 30, ease: 'none', repeat: -1, onUpdate: () => curveText.setAttribute('startOffset', curve.o + '%') });
-
-/* ---------- magnetic buttons ---------- */
-$$('.magnetic').forEach((b) => {
-  b.addEventListener('mousemove', (e) => {
-    const r = b.getBoundingClientRect();
-    gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .4 });
-  });
-  b.addEventListener('mouseleave', () => gsap.to(b, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.4)' }));
-});
-
-/* ---------- menu, popup, back-to-top ---------- */
-$('#menuBtn').addEventListener('click', () => { $('#menuBtn').classList.toggle('open'); $('#mobileMenu').classList.toggle('open'); });
-
-const popup = $('#popup');
-let never = false;
-try { never = localStorage.getItem('cc-popup-never') === '1'; } catch (e) {}
-if (!never) setTimeout(() => popup.classList.add('show'), 3500);
-$('#popupClose').addEventListener('click', () => {
-  popup.classList.remove('show');
-  try { if ($('#popupNever').checked) localStorage.setItem('cc-popup-never', '1'); } catch (e) {}
-});
-
-const toTop = $('#toTop');
-ScrollTrigger.create({ start: 600, onToggle: (s) => toTop.classList.toggle('show', s.isActive) });
-toTop.addEventListener('click', () => scrollToTarget(0));
-
-addEventListener('load', () => ScrollTrigger.refresh());

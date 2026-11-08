@@ -1,0 +1,72 @@
+<section class="page-head container">
+  <h1 class="page-title split-chars">REFERRAL <em class="serif blue">program</em></h1>
+</section>
+<div class="strip strip-lime"><div class="marquee-track" data-speed="30"><span>INVITE FRIENDS</span><i>★</i><span>EARN POINTS</span><i>★</i><span>WIN SWAG</span><i>★</i><span>INVITE FRIENDS</span><i>★</i><span>EARN POINTS</span><i>★</i><span>WIN SWAG</span><i>★</i></div></div>
+
+<section class="container">
+  <div class="amb-hero reveal-card">
+    <div class="amb-pixels" aria-hidden="true"></div>
+    <h2>JOIN THE<br/><em class="serif lime">AMBASSADORS</em></h2>
+    <p>Invite your friends to CodeCoast. Every member of a team that registers with your code earns you 25 points. Climb the leaderboard and win exclusive merch.</p>
+  </div>
+
+  <h2 class="center-title">Epic <em class="serif blue">Rewards</em></h2>
+  <div class="reward-grid">
+    <article class="reward reward-blue reveal-card tilt">
+      <span class="chip chip-lime">CHAMPION</span>
+      <div class="reward-art"><img src="/assets/merch/tee-white.svg" alt=""/><span class="voucher">₹1000</span></div>
+      <h3>Grand Prize Bundle</h3>
+      <ol><li><b>1</b>₹1000 Gift Voucher</li><li><b>2</b>Full Merch Bundle</li></ol>
+    </article>
+    <article class="reward reward-white reveal-card tilt">
+      <span class="chip chip-dark">RUNNER UP</span>
+      <div class="reward-art"><img src="/assets/merch/tee-navy.svg" alt=""/><img src="/assets/merch/stickers.svg" alt="" class="stk"/></div>
+      <h3>Swag Kit</h3>
+      <ol><li><b>1</b>Official CodeCoast Tee</li><li><b>2</b>Exclusive Sticker Pack</li></ol>
+    </article>
+  </div>
+
+  <div class="refer-split">
+    <div>
+      <h3 class="side-title">⓪ Program Guidelines</h3>
+      <div class="rule-cards">
+        <div class="rule-card"><span>👥</span><b>External Participants</b><p>Referrals count for teams outside your own college.</p></div>
+        <div class="rule-card"><span>🧩</span><b>Team Validation</b><p>Points are awarded per member of every team that registers with your code.</p></div>
+        <div class="rule-card"><span>🏅</span><b>Verification</b><p>Points are final once the team is confirmed by the organisers.</p></div>
+        <div class="rule-card"><span>🚫</span><b>Zero Tolerance</b><p>Spam or fake registrations mean instant disqualification.</p></div>
+      </div>
+
+      <div class="leaderboard">
+        <h3 class="side-title">🏆 Live Leaderboard</h3>
+        <ol id="leaderboard"><li class="muted">Loading…</li></ol>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="form-title">Generate ID</h2>
+      <p class="muted">Enter your details to join the squad. Already signed up? Use the same email to get your code back.</p>
+      <form class="card-form" id="referForm" novalidate>
+        <div class="form-grid">
+          <label class="field"><span>FULL NAME</span><input name="name" required maxlength="80" placeholder="John Doe" autocomplete="name"/></label>
+          <label class="field"><span>PHONE</span><input name="phone" required maxlength="20" placeholder="+91…" autocomplete="tel"/></label>
+          <label class="field span2"><span>EMAIL ADDRESS</span><input name="email" type="email" required maxlength="120" placeholder="email@example.com" autocomplete="email"/></label>
+          <label class="field span2"><span>COLLEGE NAME</span><input name="college" required maxlength="120" placeholder="ABC College of Engineering…"/></label>
+          <label class="field"><span>DEPARTMENT</span><input name="department" maxlength="60" placeholder="CSE, ECE…"/></label>
+          <label class="field"><span>SEMESTER</span><input name="semester" maxlength="20" placeholder="S1, S3…"/></label>
+        </div>
+        <button class="btn btn-blue" id="referBtn">GENERATE CODE <span class="btn-dot btn-dot-light">↗</span></button>
+      </form>
+
+      <div class="code-card" id="codeCard" hidden>
+        <small>YOUR AMBASSADOR CODE</small>
+        <b class="pixel" id="myCode"></b>
+        <p id="myPoints"></p>
+        <div class="share-row">
+          <button class="btn btn-lime btn-sm" id="copyCode">Copy code</button>
+          <button class="btn btn-ghost btn-sm" id="copyLink">Copy invite link</button>
+          <a class="btn btn-ghost btn-sm" id="waShare" target="_blank" rel="noopener">WhatsApp ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

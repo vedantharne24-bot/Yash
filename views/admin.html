@@ -1,0 +1,30 @@
+<section class="admin container">
+  <div class="admin-login" id="loginBox">
+    <img src="/assets/logo.svg" alt="" width="56" height="56"/>
+    <h1>Organiser Dashboard</h1>
+    <p class="muted small">Enter the admin password set in the server's <code>ADMIN_PASSWORD</code>.</p>
+    <form id="loginForm" class="card-form">
+      <label class="field"><span>PASSWORD</span><input type="password" name="password" required autocomplete="current-password"/></label>
+      <button class="btn btn-dark">Log in <span class="btn-dot">→</span></button>
+    </form>
+  </div>
+
+  <div class="admin-app" id="adminApp" hidden>
+    <div class="admin-top">
+      <h1>Dashboard</h1>
+      <button class="btn btn-white btn-sm" id="logoutBtn">Log out</button>
+    </div>
+    <div class="admin-stats" id="stats"></div>
+    <div class="admin-tabs" id="tabs">
+      <button data-t="registrations" class="on">Teams</button>
+      <button data-t="ambassadors">Ambassadors</button>
+      <button data-t="orders">Merch orders</button>
+      <button data-t="enquiries">Enquiries</button>
+    </div>
+    <div class="admin-bar">
+      <input type="search" id="search" placeholder="Search…"/>
+      <a class="btn btn-dark btn-sm" id="exportBtn" href="#">Export CSV ↓</a>
+    </div>
+    <div class="admin-table-wrap"><table class="admin-table" id="table"></table></div>
+  </div>
+</section>

@@ -1,73 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeCoast S01 — Ride the Tide of Innovation</title>
-  <meta name="description" content="CodeCoast Season 1 — a 36-hour coastal hackathon where code, art and innovation collide." />
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-
-<!-- ================= REFERRAL POPUP ================= -->
-<div class="popup" id="popup" aria-hidden="true">
-  <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
-  <span class="chip chip-lime">Earn 100+ points</span>
-  <h3>Catch the <em>Tide</em></h3>
-  <p>Refer friends to CodeCoast (₹1.5L+ Prize Pool) and win <b>Swag &amp; Gift Vouchers</b> for yourself!</p>
-  <div class="popup-art">
-    <svg viewBox="0 0 200 90" aria-hidden="true">
-      <rect x="62" y="10" width="76" height="72" rx="10" fill="#fff" stroke="#e3e3e3"/>
-      <path d="M62 24 L44 34 L52 50 L62 44Z M138 24 L156 34 L148 50 L138 44Z" fill="#fff" stroke="#e3e3e3"/>
-      <rect x="86" y="30" width="28" height="10" rx="2" fill="#1C46F5"/>
-      <rect x="150" y="52" width="40" height="26" rx="13" fill="#D2FF52"/>
-      <rect x="10" y="50" width="38" height="28" rx="6" fill="#131313"/>
-    </svg>
-  </div>
-  <div class="popup-actions">
-    <a href="#prizes" class="btn btn-dark btn-sm">Win Prizes <span class="btn-dot">★</span></a>
-    <a href="#contact" class="btn btn-blue btn-sm">Shop Swag <span class="btn-dot btn-dot-light">↗</span></a>
-  </div>
-  <label class="popup-check"><input type="checkbox" id="popupNever" /> Don't show this again</label>
-</div>
-
-<main id="top">
-
 <!-- ================= HERO ================= -->
 <section class="hero-wrap">
   <div class="hero" id="hero">
     <div class="hero-grid" aria-hidden="true"></div>
+    <canvas class="hero-pixels" id="heroPixels" aria-hidden="true"></canvas>
     <div class="hero-glow" aria-hidden="true"></div>
-
-    <header class="nav">
-      <a href="#top" class="logo" aria-label="CodeCoast home">
-        <img src="assets/logo.svg" alt="" width="40" height="40" />
-        <span class="logo-word">CODE<br/>COAST</span>
-      </a>
-      <nav class="nav-pill">
-        <a href="#about">About</a>
-        <a href="#tracks">Tracks</a>
-        <a href="#sponsors">Sponsors</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#location">Venue</a>
-        <a href="#contact">Contact</a>
-        <a href="#prizes" class="nav-apply">Apply</a>
-      </nav>
-      <div class="nav-right">
-        <button class="icon-btn" aria-label="Badge"><span class="pix-icon"></span></button>
-        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span></button>
-      </div>
-    </header>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#about">About</a><a href="#tracks">Tracks</a><a href="#sponsors">Sponsors</a>
-      <a href="#gallery">Gallery</a><a href="#location">Venue</a><a href="#contact">Contact</a>
-    </div>
 
     <div class="hero-content">
       <div class="date-pill reveal-up">MARCH 13 - MARCH 15 • 2027</div>
@@ -80,7 +16,7 @@
         A flagship experience with a <span class="hl-pill">₹2 LAKH+ PRIZE POOL</span> that sets the<br class="br-md"/>
         benchmark for design-driven innovation and code
       </p>
-      <a href="#prizes" class="btn btn-dark btn-lg reveal-up magnetic">Start Hacking <span class="btn-dot">↗</span></a>
+      <a href="/apply" class="btn btn-dark btn-lg reveal-up magnetic">Start Hacking <span class="btn-dot">↗</span></a>
     </div>
 
     <div class="spin-badge" aria-hidden="true">
@@ -105,7 +41,7 @@
 <section id="about" class="about">
   <div class="container">
     <div class="about-head">
-      <h2 class="mega reveal-up">MORE THAN <em class="serif">code</em></h2>
+      <h2 class="mega split-chars">MORE THAN <em class="serif">code</em></h2>
       <span class="label-mini">#01</span>
     </div>
     <div class="rule"></div>
@@ -132,14 +68,14 @@
         </div>
       </div>
       <div class="about-right">
-        <article class="track-card track-blue stack-card">
+        <article class="track-card track-blue stack-card tilt">
           <span class="chip chip-dark">MAIN TRACK</span>
           <h4>CodeCoast Open</h4>
           <p>The open stage for every idea. FinTech, HealthTech, EdTech, or beautiful nonsense — if you can imagine it, you can build it here.</p>
           <div class="chip-row"><span class="chip chip-white">₹1,00,000 Prize Pool</span><span class="chip chip-white">Internship Opportunities</span></div>
           <div class="pix-deco"></div>
         </article>
-        <article class="track-card track-black stack-card">
+        <article class="track-card track-black stack-card tilt">
           <span class="chip chip-lime">EXCLUSIVE TRACK</span>
           <h4>Build For Good</h4>
           <p>Reserved for first-time hackers. Build technology that lifts up communities and serves something bigger than yourself.</p>
@@ -188,9 +124,9 @@
     </div>
 
     <div class="bento-prizes">
-      <article class="p-card p-lime bento-a reveal-card">
+      <article class="p-card p-lime bento-a reveal-card tilt">
         <div class="p-top"><span class="chip chip-dark">MAIN TRACK</span><span class="pix-grid-icon"></span></div>
-        <div class="p-amount">₹1 Lakh</div>
+        <div class="p-amount">₹<span data-count="1">0</span> Lakh</div>
         <p class="serif p-sub">Main Track Pool</p>
         <div class="p-split">
           <div><b>50k</b><span>CHAMPION</span></div>
@@ -199,7 +135,7 @@
         </div>
       </article>
 
-      <a href="#contact" class="p-card p-white bento-b reveal-card register-card">
+      <a href="/apply" class="p-card p-white bento-b reveal-card register-card">
         <svg viewBox="0 0 120 120" class="spin-text spin-dark">
           <defs><path id="circlePath2" d="M60,60 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
           <text><textPath href="#circlePath2">REGISTER • NOW • APPLY • NOW • REGISTER • </textPath></text>
@@ -207,22 +143,22 @@
         <span class="reg-arrow">↗</span>
       </a>
 
-      <article class="p-card p-white bento-c reveal-card mascot-card">
+      <article class="p-card p-white bento-c reveal-card mascot-card" id="mascotCard">
         <svg viewBox="0 0 16 16" class="mascot" shape-rendering="crispEdges" aria-hidden="true">
           <g fill="#1C46F5">
             <rect x="5" y="2" width="6" height="1"/><rect x="4" y="3" width="8" height="1"/><rect x="3" y="4" width="10" height="4"/>
             <rect x="3" y="8" width="2" height="3"/><rect x="6" y="8" width="1" height="4"/><rect x="9" y="8" width="1" height="4"/><rect x="11" y="8" width="2" height="3"/>
             <rect x="2" y="11" width="2" height="1"/><rect x="12" y="11" width="2" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/>
           </g>
-          <rect x="5" y="5" width="2" height="2" fill="#fff"/><rect x="9" y="5" width="2" height="2" fill="#fff"/>
-          <rect x="6" y="6" width="1" height="1" fill="#131313"/><rect x="10" y="6" width="1" height="1" fill="#131313"/>
+          <g class="mascot-eyes"><rect x="5" y="5" width="2" height="2" fill="#fff"/><rect x="9" y="5" width="2" height="2" fill="#fff"/>
+          <rect x="6" y="6" width="1" height="1" fill="#131313"/><rect x="10" y="6" width="1" height="1" fill="#131313"/></g>
         </svg>
         <span class="star-corner">☆</span>
       </article>
 
-      <article class="p-card p-blue bento-d reveal-card">
+      <article class="p-card p-blue bento-d reveal-card tilt">
         <span class="chip chip-glass">#BUILDFORGOOD TRACK</span>
-        <div class="p-amount p-amount-sm">50K</div>
+        <div class="p-amount p-amount-sm"><span data-count="50" data-suffix="K">0</span></div>
         <p class="serif p-sub">Total BFG Pool</p>
         <ul class="p-table">
           <li><span>Winner</span><b>25,000</b></li>
@@ -283,6 +219,8 @@
     <span class="chip chip-lime" id="modalNum"></span>
     <h3 id="modalTitle"></h3>
     <p id="modalBody"></p>
+    <ul class="modal-list" id="modalIdeas"></ul>
+    <a href="/apply" class="btn btn-lime btn-sm" id="modalApply">Apply for this track →</a>
   </div>
 </div>
 
@@ -337,7 +275,7 @@
       <div class="sp-logo">◎ Orbitly</div>
       <div class="sp-logo">▲ Peakstack</div>
     </div>
-    <div class="center"><a href="#contact" class="btn btn-dark magnetic">Become a Sponsor <span class="btn-dot">↗</span></a></div>
+    <div class="center"><a href="/sponsorship" class="btn btn-dark magnetic">Become a Sponsor <span class="btn-dot">↗</span></a></div>
   </div>
 </section>
 
@@ -365,7 +303,7 @@
     </div>
     <div class="loc-sub">
       <p class="muted">Palm Grove Beach Camp, Goa. Where innovation meets the coast.</p>
-      <a href="#" class="btn btn-white btn-sm magnetic">TRAVEL<br/>GUIDE <span class="btn-dot">↗</span></a>
+      <button class="btn btn-white btn-sm magnetic" id="travelBtn">TRAVEL<br/>GUIDE <span class="btn-dot">↗</span></button>
     </div>
 
     <div class="loc-bento">
@@ -373,11 +311,11 @@
         <iframe title="Venue map" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=73.73%2C15.48%2C73.83%2C15.56&amp;layer=mapnik&amp;marker=15.52%2C73.77"></iframe>
         <div class="map-tag"><span class="map-pin">●</span><div><b>Palm Grove Beach Camp</b><small>Goa, India</small></div></div>
       </div>
-      <div class="loc-card loc-refer p-lime reveal-card">
+      <a href="/refer" class="loc-card loc-refer p-lime reveal-card">
         <span class="eyebrow">REFER &amp; WIN</span>
         <h4>Share the hack!</h4>
-        <a href="#" class="btn btn-dark btn-sm" id="getCode">GET CODE</a>
-      </div>
+        <span class="btn btn-dark btn-sm">GET CODE</span>
+      </a>
       <div class="loc-card loc-clock reveal-card">
         <svg viewBox="0 0 100 100" class="clock">
           <circle cx="50" cy="50" r="46" fill="none" stroke="#333" stroke-width="1"/>
@@ -391,21 +329,36 @@
         <small>IST (UTC+05:30)</small>
       </div>
       <div class="loc-card loc-weather p-lime reveal-card">
-        <div class="lw-top"><span class="eyebrow">WEATHER</span><span class="sun">☀</span></div>
-        <b class="w-temp">29°</b><small>Sunny &amp; Breezy</small>
+        <div class="lw-top"><span class="eyebrow">WEATHER · GOA</span><span class="sun" id="wIcon">☀</span></div>
+        <b class="w-temp" id="wTemp">29°</b><small id="wDesc">Sunny &amp; Breezy</small>
       </div>
       <div class="loc-card loc-cal reveal-card">
         <div class="mini-head"><b>MARCH</b><span>2027</span></div>
         <div class="mini-grid" id="miniCal"></div>
       </div>
-      <a class="loc-card loc-nav p-blue reveal-card" href="https://www.openstreetmap.org/?mlat=15.52&amp;mlon=73.77" target="_blank" rel="noopener">
+      <a class="loc-card loc-nav p-blue reveal-card" href="https://www.google.com/maps/dir/?api=1&amp;destination=15.52,73.77" target="_blank" rel="noopener">
         <div class="lw-top"><span class="eyebrow eyebrow-light">NAVIGATE</span><span>➤</span></div>
-        <svg viewBox="0 0 200 80" class="nav-curve"><path d="M10 70 C 60 -10, 140 -10, 190 60" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="5 6"/></svg>
+        <svg viewBox="0 0 200 80" class="nav-curve"><path d="M10 70 C 60 -10, 140 -10, 190 60" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="5 6"/><circle r="5" fill="#D2FF52"><animateMotion dur="3s" repeatCount="indefinite" path="M10 70 C 60 -10, 140 -10, 190 60"/></circle></svg>
         <b class="nav-txt">Get<br/>Directions</b>
       </a>
     </div>
   </div>
 </section>
+
+<div class="modal" id="travelModal" aria-hidden="true">
+  <div class="modal-card modal-white">
+    <button class="popup-close" data-close aria-label="Close">&times;</button>
+    <span class="chip chip-lime">TRAVEL GUIDE</span>
+    <h3>Getting to the coast</h3>
+    <ul class="travel-list">
+      <li><b>✈ By air</b><span>Manohar International (GOX) or Dabolim (GOI) — 45–60 min by cab.</span></li>
+      <li><b>🚆 By train</b><span>Thivim (THVM) or Madgaon (MAO) — prepaid taxis and buses outside.</span></li>
+      <li><b>🚌 By bus</b><span>Panaji Kadamba bus stand, then a 25 min local bus or cab ride.</span></li>
+      <li><b>🛏 Stay</b><span>Accommodation for shortlisted teams is provided on-site for both nights.</span></li>
+    </ul>
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=15.52,73.77" target="_blank" rel="noopener" class="btn btn-dark btn-sm">Open directions <span class="btn-dot">↗</span></a>
+  </div>
+</div>
 
 <!-- ================= FAQ ================= -->
 <section class="faq" id="faq">
@@ -425,8 +378,8 @@
     <h2>Got Questions?<br/>We're Here.</h2>
     <p>Registration, partnerships, or just want to say hi — our crew is ready to help you out.</p>
     <div class="contact-btns">
-      <a href="mailto:hello@codecoast.dev" class="btn btn-lime btn-sm">GENERAL ENQUIRIES →</a>
-      <a href="#" class="btn btn-ghost btn-sm">CODE OF CONDUCT ↗</a>
+      <a href="/contact" class="btn btn-lime btn-sm">GENERAL ENQUIRIES →</a>
+      <a href="/code-of-conduct" class="btn btn-ghost btn-sm">CODE OF CONDUCT ↗</a>
     </div>
     <svg class="curve-marquee" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
       <path id="curve1" d="M -100 60 Q 300 150 600 90 T 1300 70" fill="none" stroke="#fff" stroke-width="44"/>
@@ -434,46 +387,3 @@
     </svg>
   </div>
 </section>
-
-</main>
-
-<!-- ================= FOOTER ================= -->
-<footer id="footer" class="footer">
-  <div class="footer-card">
-    <span class="eyebrow">CONTACTS</span>
-    <a href="mailto:hello@codecoast.dev" class="pixel foot-mail">HELLO@CODECOAST.DEV</a>
-    <div class="foot-grid">
-      <div>
-        <span class="eyebrow">ORGANIZED BY</span>
-        <b class="foot-org">CoastDev Collective</b>
-        <p class="muted small">Community of Builders &amp; Designers<br/>Panaji, Goa</p>
-        <div class="foot-logos"><img src="assets/logo.svg" alt="" width="32" height="32"/></div>
-      </div>
-      <div>
-        <span class="eyebrow">QUICK LINKS</span>
-        <div class="foot-links">
-          <div><a href="#top">Home</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#location">Venue</a><a href="#contact">Contact</a></div>
-          <div class="muted"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Code of Conduct</a></div>
-        </div>
-        <div class="foot-people">
-          <div><span class="eyebrow">LEAD ORGANIZER</span><b>Your Name</b><small>+91 00000 00000</small></div>
-          <div><span class="eyebrow">CO-ORGANIZERS</span><b>Teammate One</b><small>+91 00000 00000</small><b>Teammate Two</b><small>+91 00000 00000</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <small>© 2027 CODECOAST. ALL RIGHTS RESERVED.</small>
-    <small>DESIGNED &amp; DEVELOPED BY <u>YOU</u></small>
-    <div class="socials"><span>SOCIAL MEDIA:</span><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="YouTube">▶</a></div>
-  </div>
-</footer>
-
-<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="main.js"></script>
-</body>
-</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="none"/>
+  <path d="M140 60 L100 70 L40 120 L70 175 L110 155 L110 350 L290 350 L290 155 L330 175 L360 120 L300 70 L260 60 C250 85 230 98 200 98 C170 98 150 85 140 60Z" fill="#1b2547" stroke="#0f1630" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M140 60 C150 85 170 98 200 98 C230 98 250 85 260 60" fill="none" stroke="#0f1630" stroke-width="3"/>
+  <g transform="translate(150 140)" shape-rendering="crispEdges">
+    <rect width="34" height="34" rx="6" fill="#1C46F5"/>
+    <g fill="#D2FF52"><rect x="6" y="8" width="7" height="2"/><rect x="4" y="10" width="2" height="7"/><rect x="6" y="17" width="7" height="2"/><rect x="21" y="8" width="7" height="2"/><rect x="19" y="10" width="2" height="7"/><rect x="21" y="17" width="7" height="2"/></g>
+    <g fill="#fff"><rect x="4" y="24" width="4" height="2"/><rect x="8" y="26" width="4" height="2"/><rect x="12" y="24" width="4" height="2"/><rect x="16" y="26" width="4" height="2"/><rect x="20" y="24" width="4" height="2"/><rect x="24" y="26" width="4" height="2"/></g>
+  </g>
+  <text x="225" y="160" font-family="monospace" font-weight="700" font-size="15" fill="#D2FF52">CODE</text>
+  <text x="225" y="176" font-family="monospace" font-weight="700" font-size="15" fill="#D2FF52">COAST</text>
+</svg>

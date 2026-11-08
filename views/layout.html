@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITLE}}</title>
+  <meta name="description" content="CodeCoast Season 1 — a 36-hour seaside hackathon where code, art and innovation collide." />
+  <meta name="theme-color" content="#1C46F5" />
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="stylesheet" href="/css/pages.css" />
+</head>
+<body class="{{BODY_CLASS}}">
+
+<!-- page transition curtain -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="curtain-cols"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="curtain-logo"><img src="/assets/logo.svg" alt="" width="64" height="64" /><span class="pixel">CODE COAST</span></div>
+</div>
+
+<!-- cursor follower (desktop) -->
+<div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav site-nav" id="siteNav">
+  <a href="/" class="logo" aria-label="CodeCoast home">
+    <img src="/assets/logo.svg" alt="" width="40" height="40" />
+    <span class="logo-word">CODE<br/>COAST</span>
+  </a>
+  <nav class="nav-pill">
+    <a href="/#about">About</a>
+    <a href="/#tracks">Tracks</a>
+    <a href="/#sponsors">Sponsors</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/merch">Merch</a>
+    <a href="/contact">Contact</a>
+    <a href="/apply" class="nav-apply">Apply</a>
+  </nav>
+  <div class="nav-right">
+    <a href="/checkout" class="icon-btn cart-btn" aria-label="Cart"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><b class="cart-count" id="cartCount">0</b></a>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- full-screen menu -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <nav class="menu-links">
+    <a href="/"><small>01</small><span>HOME</span></a>
+    <a href="/about"><small>02</small><span>ABOUT</span></a>
+    <a href="/#tracks"><small>03</small><span>TRACKS</span></a>
+    <a href="/sponsorship"><small>04</small><span>SPONSORS</span></a>
+    <a href="/gallery"><small>05</small><span>GALLERY</span></a>
+    <a href="/merch"><small>06</small><span>MERCH</span></a>
+    <a href="/refer"><small>07</small><span>REFER &amp; WIN</span></a>
+    <a href="/contact"><small>08</small><span>CONTACT</span></a>
+  </nav>
+  <div class="menu-foot">
+    <div><span class="eyebrow">SOCIALS</span><a href="#">INSTAGRAM</a><a href="#">YOUTUBE</a><a href="#">LINKEDIN</a><a href="mailto:hello@codecoast.dev">EMAIL</a></div>
+    <a href="/apply" class="btn btn-dark">Apply Now <span class="btn-dot">↗</span></a>
+  </div>
+</div>
+
+<!-- ================= REFERRAL POPUP ================= -->
+<div class="popup" id="popup" aria-hidden="true">
+  <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+  <span class="chip chip-lime">Earn 100+ points</span>
+  <h3>Catch the <em>Tide</em></h3>
+  <p>Refer friends to CodeCoast (₹2L+ Prize Pool) and win <b>Swag &amp; Gift Vouchers</b> for yourself!</p>
+  <div class="popup-art">
+    <img src="/assets/merch/tee-white.svg" alt="" class="popup-tee" />
+    <img src="/assets/merch/stickers.svg" alt="" class="popup-stk" />
+    <span class="popup-voucher">₹1000<br/><small>VOUCHER</small></span>
+  </div>
+  <div class="popup-actions">
+    <a href="/refer" class="btn btn-dark btn-sm">Win Prizes <span class="btn-dot">★</span></a>
+    <a href="/merch" class="btn btn-blue btn-sm">Shop Merch <span class="btn-dot btn-dot-light">↗</span></a>
+  </div>
+  <label class="popup-check"><input type="checkbox" id="popupNever" /> Don't show this again</label>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<main id="top">
+{{BODY}}
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer" class="footer">
+  <div class="footer-card">
+    <span class="eyebrow">CONTACTS</span>
+    <a href="mailto:hello@codecoast.dev" class="pixel foot-mail">HELLO@CODECOAST.DEV</a>
+    <div class="foot-grid">
+      <div>
+        <span class="eyebrow">ORGANIZED BY</span>
+        <b class="foot-org">CoastDev Collective</b>
+        <p class="muted small">Community of Builders &amp; Designers<br/>Panaji, Goa</p>
+        <div class="foot-logos"><img src="/assets/logo.svg" alt="" width="32" height="32"/></div>
+      </div>
+      <div>
+        <span class="eyebrow">QUICK LINKS</span>
+        <div class="foot-links">
+          <div><a href="/">Home</a><a href="/about">About</a><a href="/gallery">Gallery</a><a href="/merch">Merch</a><a href="/contact">Contact</a></div>
+          <div class="muted"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/code-of-conduct">Code of Conduct</a><a href="/sponsorship">Sponsorship</a><a href="/refer">Refer &amp; Win</a></div>
+        </div>
+        <div class="foot-people">
+          <div><span class="eyebrow">LEAD ORGANIZER</span><b>Your Name</b><a href="tel:+910000000000"><small>+91 00000 00000</small></a></div>
+          <div><span class="eyebrow">CO-ORGANIZERS</span><b>Teammate One</b><a href="tel:+910000000000"><small>+91 00000 00000</small></a><b>Teammate Two</b><a href="tel:+910000000000"><small>+91 00000 00000</small></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <small>© 2027 CODECOAST. ALL RIGHTS RESERVED.</small>
+    <small>DESIGNED &amp; DEVELOPED BY <u>YOU</u></small>
+    <div class="socials"><span>SOCIAL MEDIA:</span><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="YouTube">▶</a></div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/js/common.js"></script>
+{{SCRIPTS}}
+</body>
+</html>

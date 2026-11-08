@@ -1,0 +1,31 @@
+<section class="container contact-page">
+  <div class="cp-left">
+    <span class="eyebrow"><i class="dot dot-blue"></i>GET IN TOUCH</span>
+    <h1 class="cp-title split-chars">Speak to <em class="serif lime-ink">us.</em></h1>
+    <p class="muted">If you want to sponsor, mentor, volunteer or simply say hi, we want to hear from you.</p>
+    <div class="cp-direct">
+      <a href="mailto:hello@codecoast.dev"><small>EMAIL</small><b>hello@codecoast.dev</b></a>
+      <a href="tel:+910000000000"><small>PHONE</small><b>+91 00000 00000</b></a>
+      <a href="/sponsorship"><small>PARTNERSHIPS</small><b>See sponsorship tiers ↗</b></a>
+    </div>
+  </div>
+
+  <div class="cp-right">
+    <form class="line-form" id="contactForm" novalidate>
+      <div class="form-grid">
+        <label class="field line"><span>FIRST NAME</span><input name="firstName" required maxlength="60" placeholder="Emma" autocomplete="given-name"/></label>
+        <label class="field line"><span>LAST NAME</span><input name="lastName" maxlength="60" placeholder="Lewis" autocomplete="family-name"/></label>
+        <label class="field line"><span>EMAIL ADDRESS</span><input name="email" type="email" required maxlength="120" placeholder="emma@email.com" autocomplete="email"/></label>
+        <label class="field line"><span>PHONE NUMBER</span><input name="phone" maxlength="20" placeholder="+91 00000 00000" autocomplete="tel"/></label>
+        <label class="field line span2"><span>QUERY ABOUT HACKATHON</span><textarea name="message" required minlength="5" maxlength="3000" rows="4" placeholder="Tell us about your query…"></textarea></label>
+      </div>
+      <button class="btn btn-blue" id="contactBtn">SEND ENQUIRY <span class="btn-dot btn-dot-light">↗</span></button>
+    </form>
+    <div class="sent-card" id="sentCard" hidden>
+      <div class="done-tick">✓</div>
+      <h3>Message Sent!</h3>
+      <p class="muted">We'll get back to you faster than you can say "Hackathon".</p>
+      <button class="btn btn-dark btn-sm" id="againBtn">SEND ANOTHER</button>
+    </div>
+  </div>
+</section>

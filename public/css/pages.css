@@ -26,8 +26,7 @@ main{display:block;overflow-x:clip}
 .menu-links{display:flex;flex-direction:column}
 .menu-links a{display:flex;align-items:baseline;gap:1.5rem;border-bottom:1px solid rgba(0,0,0,.12);padding:.2rem 0;overflow:hidden}
 .menu-links small{font-size:.75rem;opacity:.5;width:2rem}
-.menu-open .nav-pill{opacity:0;pointer-events:none}
-.nav-pill{transition:opacity .3s}
+.menu-open .nav-pill{visibility:hidden}
 .menu-links span{font-size:clamp(2rem,min(6.5vw,7.4vh),5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;transition:transform .4s cubic-bezier(.2,1,.3,1),color .3s;display:inline-block}
 .menu-links a:hover span{transform:translateX(1.2rem);color:var(--blue)}
 .menu-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-top:2rem}
